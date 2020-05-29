@@ -1,13 +1,17 @@
 <?php
 require_once("conexion.php");
-class balance extends Conexion{
+class Balance extends Conexion{
 	
-   public function alta($fechai, $fechafin, $total){
-   $this->sentencia ="INSERT INTO balance VALUES(null,'$fecha', '$fechafin','$total')";
+   public function alta($fechainicio, $fechafin, $total){
+   $this->sentencia ="INSERT INTO balance VALUES(null,'$fechainicio','$fechafin','$total')";
        $this->ejecutarSentencia();
    }
    public function consulta(){
    	$this->sentencia ="SELECT * FROM balance";
    	return $this->obtenerSentencia(); 
 }
+public function eliminar($id){
+   	$this->sentencia ="DELETE * FROM balance WHERE IDbalance=$id";
+   	return $this->ejecutarSentencia();
+}}
 ?>

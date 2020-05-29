@@ -1,13 +1,17 @@
 <?php
 require_once("conexion.php");
-class devoluciones extends Conexion{
+class Devoluciones extends Conexion{
 	
-   public function alta($fecha, $cantidad,$descripcion){
-   $this->sentencia ="INSERT INTO devoluciones VALUES(null,'$fecha', '$cantidad','$descripcion')";
+   public function alta($fecha,$cantidad,$descripcion,$IDproducto){
+   $this->sentencia ="INSERT INTO devoluciones VALUES(null,'$fecha', '$cantidad','$descripcion',$'IDproducto')";
        $this->ejecutarSentencia();
    }
    public function consulta(){
    	$this->sentencia ="SELECT * FROM devoluciones";
    	return $this->obtenerSentencia(); 
 }
+public function eliminar($id){
+   	$this->sentencia ="DELETE * FROM devoluciones WHERE IDdevoluciones=$id";
+   	return $this->ejecutarSentencia();
+}}
 ?>

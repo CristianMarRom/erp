@@ -3,14 +3,18 @@
 require_once("conexion.php");
 
 class Pago extends Conexion{
-	public funtion alta($sal,$fecha_dep,$met_pag,$des){
-		$this->sentencia = "INSERT INTO pago VALUES (null,'$sal','$fecha_dep','$met_pag','$des')";
+	public function alta($IDempleado,$sal,$fecha_dep,$met_pag,$des){
+		$this->sentencia = "INSERT INTO pago VALUES (null,'$IDempleado','$sal','$fecha_dep','$met_pag','$des')";
 		$this->ejecutarSentencia();
 	}
 
-	public funtion consulta(){
+	public function consulta(){
 		$this->sentencia = "SELECT * FROM pago";
 		return $this->obtenerSentencia();
 	}
+	public function eliminar($id){
+   	$this->sentencia ="DELETE * FROM pago  WHERE IDpago=$id";
+   	return $this->ejecutarSentencia();
+}
 }
 ?>
