@@ -115,3 +115,97 @@ while($fila = $res->fetch_assoc()){
       	echo $fila["IDempleado"]." ".$fila["nombre"]."".$fila["appaterno"].$fila["apmaterno"]."".$fila["correo"].$fila["rfc"]."".$fila["telefono"].$fila["sexo"].$fila["fechadeingreso"].$fila["cargo"].$fila["salario"].$fila["estadocivil"].$fila["nss"]."<br";
       }
 ?>
+<?php
+      requiere_once("php/actividad.php");
+      $obj = new Actividad();
+      $obj->alta("7","1","2","3");
+      $fecha, $cantidad,$descripcion
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+      	echo $fila["IDactividad"]." ".$fila["registro"]."".$fila["IDusuario"]."".$fila["movimiento_act"]."".$fila["movimiento_tabla"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //////asistencia
+
+ requiere_once("php/asistencia.php");
+      $obj = new Asistencia();
+      $obj->alta("2020-04-12","4","13:00:00");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDasistencia"]." ".$fila["fecha"]."".$fila["IDempleado"]."".$fila["hora"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////balance
+
+ requiere_once("php/balance.php");
+      $obj = new Balance();
+      $obj->alta("2020-04-12","2020-09-20","4");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDbalance"]." ".$fila["fechai"]."".$fila["fechafin"]."".$fila["total"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////detallle_compra
+      requiere_once("php/detallle_compra.php");
+      $obj = new Detalllecompra();
+      $obj->alta("7","5","9");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDdetallecompra"]." ".$fila["IDmateriaprima"]."".$fila["IDcompra"]."".$fila["cantidad"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+      ///////////////evalucion 
+
+requiere_once("php/evaluacion.php");
+      $obj = new Evaluacion();
+      $obj->alta("Empleado","Nadia","20","Femenino", "Informatica", "Mantenimiento","si","no","5000","Soltero", "998976762");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDevaluacion"]." ".$fila["tipo"]." ".$fila["pregunta1"]."".$fila["pregunta2"]."".$fila["pregunta3"]."".$fila["pregunta4"]."".$fila["pregunta5"]."".$fila["pregunta6"]."".$fila["pregunta7"]."".$fila["pregunta8"]."".$fila["pregunta9"]."".$fila["pregunta10"]."".$fila["estadocivil"]."".$fila["nss"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////777jornada
+      requiere_once("php/jornada.php");
+      $obj = new Jornada();
+      $obj->alta("30","7","90","5","2","1");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDjornada"]." ".$fila["hrstraba"]."".$fila["pagohora"]."".$fila["hextras"]."".$fila["bonos"]."".$fila["IDempleado"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////777mantenimiento 
+      requiere_once("php/mantenimiento.php");
+      $obj = new Mantenimiento();
+      $obj->alta("2020-05-03","4","5","4","7");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDmantenimiento"]." ".$fila["fechaman"]."".$fila["area"]."".$fila["IDmob"]."".$fila["costoman"]."".$fila["IDempleado"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////pedido
+requiere_once("php/pedido.php");
+      $obj = new Pedido();
+      $obj->alta("2020-06-09","3","9","12","Paseo matlazincas","2");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDpedido"]." ".$fila["fecha"]."".$fila["IDcliente"]."".$fila["precio"]."".$fila["cantidad"]."".$fila["direccion"]."".$fila["IDproducto"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////proyecto
+requiere_once("php/proyecto.php");
+      $obj = new Proyecto();
+      $obj->alta("Areas", "Supervision","3","2020-02-09","2020-05-02","Conocer empleado");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDproyecto"]." ".$fila["nombrepro"]."".$fila["tipopro"]."".$fila["IDempleado"]."".$fila["fechai"]."".$fila["fechafin"]."".$fila["descripcion"]."<br>";
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      ///////////remplazo 
+requiere_once("php/reemplazo.php");
+      $obj = new Reemplazo();
+      $obj->alta("2","2020-05-03","49","cafe grande");
+      $res = $obj-> consulta();
+      while($fila = $res->fetch_assoc()){
+            echo $fila["IDreemplazo"]." ".$fila["IDinmobiliario"]."".$fila["fecha"]."".$fila["costo"]."".$fila["descripcion"]."<br>";
+      }
+?>
