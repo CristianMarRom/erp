@@ -3,7 +3,12 @@
 	$obj = new Venta();
  ?>
 <section id="principal">
-
+    <div>
+		<a href="?sec=gven"><input type="button" value="Generar Gráfica"></a>
+    </div>
+	<div>
+		<a href="?sec=rven"><input type="button" value="Generar Reporte"></a>
+    </div>
 	<form action="" method="post">
 		ID Venta: <input type="text" name="IDVenta"> <br>
 		Fecha: <input type="date" name="fecha"> <br>
@@ -15,6 +20,11 @@
 			<option value="2">Tarjeta</option>
 		</select> <br>
 		<input type="submit" value="Agregar Venta" name="alta">
+		<br>
+		<?php
+        if(isset($_GET["e"])){
+        	echo "<h2>Venta Eliminada</h2>";
+        }?>
 	</form>
 	<?php 
 		if(isset($_POST["alta"])){
@@ -38,6 +48,7 @@
 			<th>ID Cliente</th>		
 		    <th>Total</th>
 			<th>Tipo de pago</th>
+			<th>Eliminar</th>
 		</tr>
 		<?php 
 			while($fila = $resultado->fetch_assoc()){
@@ -51,9 +62,23 @@
 				}else{
 					echo "<td>Tarjeta</td>";
 				}
-				echo "</tr>";
+			?>
+			<td>
+			<form action="" method="post" class="eliminar">
+				<input type="hidden" value="<?php echo $fila['IDventa']; ?>" name="id">
+				<input type="submit" value="Eliminar" name="eliminar">
+			</form>
+		    </td>
+			<?php 
+			echo "</tr>";
 			}
 		 ?>
 	</table>
-
+    <?php 
+        if(isset($_POST["eliminar"])){
+        	$id = $_POST["id"];
+        	$obj->eliminar($id);
+        	header("Location: ?sec=ven&e=1");
+        }
+    ?>
 </section>

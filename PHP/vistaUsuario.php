@@ -13,6 +13,11 @@
 			<option value="2">Usuario</option>
 		</select> <br>
 		<input type="submit" value="Agregar Usuario" name="alta">
+		<br>
+		<?php
+		if(isset($_GET["e"])){
+           echo "<h2>Usuario Eliminado</h2>";
+        }?>
 	</form>
 	<?php 
 		if(isset($_POST["alta"])){
@@ -32,6 +37,7 @@
 			<th>Nombre</th>
 			<th>Password</th>
 			<th>Tipo</th>
+			<th>Eliminar</th>
 		</tr>
 		<?php 
 			while($fila = $resultado->fetch_assoc()){
@@ -43,9 +49,23 @@
 				}else{
 					echo "<td>Usuario</td>";
 				}
+				?>
+				<td>
+				<form action="" method="post" class="eliminar">
+					<input type="hidden" value="<?php echo $fila['IDusuario']; ?>" name="id">
+					<input type="submit" value="Eliminar" name="eliminar">
+				</form>
+			    </td>
+				<?php 
 				echo "</tr>";
 			}
 		 ?>
-	</table>
-
+	</table> 
+    <?php 
+        if(isset($_POST["eliminar"])){
+        	$id = $_POST["id"];
+        	$obj->eliminar($id);
+        	header("Location: ?sec=usu&e=1");
+        }
+    ?>
 </section>

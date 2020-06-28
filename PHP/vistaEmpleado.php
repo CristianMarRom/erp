@@ -3,7 +3,9 @@
 	$obj = new Empleado();
  ?>
 <section id="principal">
-
+	<div>
+		<a href="?sec=remp"><input type="button" value="Generar Reporte"></a>
+    </div>
 	<form action="" method="post">
 		Nombre: <input type="text" name="nombre"> <br>
 		Apellido Paterno: <input type="text" name="appaterno"> <br>
@@ -26,6 +28,11 @@
 		</select> <br>	
 		Numero NSS: <input type="text" name="nss"> <br>		
 		<input type="submit" value="Agregar Empleado" name="alta">
+		<br>
+		<?php
+        if(isset($_GET["e"])){
+        	echo "<h2>Empleado Eliminado</h2>";
+        }?>
 	</form>
 	<?php 
 		if(isset($_POST["alta"])){
@@ -63,6 +70,8 @@
 			<th>Salario</th>
 			<th>Estado Civil</th>
 			<th>NSS</th>
+			<th>Eliminar</th>
+
 		</tr>
 		<?php 
 			while($fila = $resultado->fetch_assoc()){
@@ -87,9 +96,23 @@
 					echo "<td>Casad@</td>";
 				}
 				echo "<td>".$fila["nss"]."</td>";
-				echo "</tr>";
+		 ?>
+		 			<td>
+			<form action="" method="post" class="eliminar">
+				<input type="hidden" value="<?php echo $fila['IDempleado']; ?>" name="id">
+				<input type="submit" value="Eliminar" name="eliminar">
+			</form>
+		    </td>
+			<?php 
+			echo "</tr>";
 			}
 		 ?>
 	</table>
-
+    <?php 
+        if(isset($_POST["eliminar"])){
+        	$id = $_POST["id"];
+        	$obj->eliminar($id);
+        	header("Location: ?sec=emp&e=1");
+        }
+    ?>
 </section>

@@ -3,7 +3,9 @@
 	$obj = new Proveedor();
  ?>
 <section id="principal">
-
+    <div>
+		<a href="?sec=rprv"><input type="button" value="Generar Reporte"></a>
+    </div>
 	<form action="" method="post">
 		Nombre: <input type="text" name="nombre"> <br>
 		Telefono: <input type="text" name="telefono"> <br>
@@ -11,6 +13,11 @@
 		Correo: <input type="text" name="correo"> <br>
 		RFC: <input type="text" name="rfc"> <br>	
 		<input type="submit" value="Agregar Proveedor" name="alta">
+		<br>
+		<?php
+        if(isset($_GET["e"])){
+        	echo "<h2>Proveedor Eliminado</h2>";
+        }?>
 	</form>
 	<?php 
 		if(isset($_POST["alta"])){
@@ -34,6 +41,7 @@
 			<th>Direccion</th>		
 			<th>Correo</th>
 			<th>RFC</th>
+			<th>Eliminar</th>			
 		</tr>
 		<?php 
 			while($fila = $resultado->fetch_assoc()){
@@ -43,9 +51,23 @@
 				echo "<td>".$fila["direccion"]."</td>";
 				echo "<td>".$fila["correo"]."</td>";
 				echo "<td>".$fila["rfc"]."</td>";
-				echo "</tr>";
-			}
+		 ?>
+	    <td>
+		<form action="" method="post" class="eliminar">
+			<input type="hidden" value="<?php echo $fila['IDproveedor']; ?>" name="id">
+			<input type="submit" value="Eliminar" name="eliminar">
+		</form>
+		</td>
+		<?php 
+		  echo "</tr>";
+		}
 		 ?>
 	</table>
-
+    <?php 
+        if(isset($_POST["eliminar"])){
+        	$id = $_POST["id"];
+        	$obj->eliminar($id);
+        	header("Location: ?sec=prv&e=1");
+        }
+    ?>
 </section>

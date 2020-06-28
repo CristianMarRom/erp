@@ -13,7 +13,7 @@ class Usuario extends Conexion{
 		return $this->obtenerSentencia();
 	}
 	public function eliminar($id){
-   	$this->sentencia ="DELETE * FROM usuario WHERE IDusuario=$id";
+   	$this->sentencia ="DELETE FROM usuario WHERE IDusuario=$id";
    	return $this->ejecutarSentencia();
 }}
 ?>

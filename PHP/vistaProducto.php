@@ -3,7 +3,12 @@
 	$obj = new Producto();
  ?>
 <section id="principal">
-
+    <div>
+		<a href="?sec=gpro"><input type="button" value="Generar Gráfica"></a>
+    </div>
+	<div>
+		<a href="?sec=rpro"><input type="button" value="Generar Reporte"></a>
+    </div>
 	<form action="" method="post">
 		Nombre: <input type="text" name="nombre"> <br>
 		Descripcion: <input type="text" name="descripcion"> <br>
@@ -14,7 +19,12 @@
 		Cantidad Maxima: <input type="text" name="cantmax"> <br>	
 		Categoria: <input type="text" name="categoria"> <br>
 		<input type="submit" value="Agregar Producto" name="alta">
-	</form>
+		<br>
+		<?php
+        if(isset($_GET["e"])){
+        	echo "<h2>Producto Eliminado</h2>";
+        }?>
+	</form>        
 	<?php 
 		if(isset($_POST["alta"])){
 			$nombre = $_POST["nombre"];
@@ -36,14 +46,14 @@
 	<table>
 		<tr>
 			<th>Nombre</th>
-			<th>Descripciono</th>		
-		    <th>Apellido Materno</th>
+			<th>Descripcion</th>		
 			<th>Precio Venta</th>
 			<th>Precio Compra</th>
 			<th>Cantidad</th>
 			<th>Cantidad Minima</th>
 			<th>Cantidad Maxima</th>
 			<th>Categoria</th>
+			<th>Eliminar</th>
 		</tr>
 		<?php 
 			while($fila = $resultado->fetch_assoc()){
@@ -56,9 +66,23 @@
 				echo "<td>".$fila["cantmin"]."</td>";
 				echo "<td>".$fila["cantmax"]."</td>";
 				echo "<td>".$fila["categoria"]."</td>";
-				echo "</tr>";
-			}
+	    ?>
+	    <td>
+		<form action="" method="post" class="eliminar">
+			<input type="hidden" value="<?php echo $fila['IDproducto']; ?>" name="id">
+			<input type="submit" value="Eliminar" name="eliminar">
+		</form>
+		</td>
+		<?php 
+		  echo "</tr>";
+		}
 		 ?>
 	</table>
-
+    <?php 
+        if(isset($_POST["eliminar"])){
+        	$id = $_POST["id"];
+        	$obj->eliminar($id);
+        	header("Location: ?sec=prd&e=1");
+        }
+    ?>
 </section>

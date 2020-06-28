@@ -1,5 +1,4 @@
 <?php
-
 require_once("conexion.php");
 
 class Cliente extends Conexion{
@@ -7,13 +6,12 @@ class Cliente extends Conexion{
 		$this->sentencia = "INSERT INTO cliente VALUES (null,'$nombre','$direccion','$telefono','$correo','$apematerno','$apepaterno','$sexo','$fenacimiento')";
 		$this->ejecutarSentencia();
 	}
-
 	public function consulta(){
 		$this->sentencia = "SELECT * FROM cliente";
 		return $this->obtenerSentencia();
 	}
 	public function eliminar($id){
-   	$this->sentencia ="DELETE * FROM cliente WHERE IDcliente=$id";
+   	$this->sentencia ="DELETE FROM cliente WHERE IDcliente=$id";
    	return $this->ejecutarSentencia();
 }}
 ?>
