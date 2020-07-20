@@ -31,5 +31,14 @@ class Asistencia extends Conexion{
 public function eliminar($id){
    	$this->sentencia ="DELETE FROM asistencia WHERE IDasistencia=$id";
    	return $this->ejecutarSentencia();
+}
+public function obtenerEmpleados(){
+    $this->sentencia = "SELECT IDempleado,nombre,appaterno,apmaterno FROM empleado";
+    $res = $this->obtenerSentencia();
+    echo "<select name='empleado'>";
+    while ($fila = $res->fetch_assoc()){
+      echo "<option value='".$fila["IDempleado"]."'> ".$fila["nombre"]." ".$fila["apmaterno"]." </option>";
+    }
+    echo "</select>";
 }}
 ?>

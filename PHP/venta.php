@@ -31,5 +31,14 @@ class Venta extends Conexion{
 	public function eliminar($id){
    	$this->sentencia ="DELETE FROM venta WHERE IDventa=$id";
    	return $this->ejecutarSentencia();
-}}
+	}
+	public function obtenerClientes(){
+		$this->sentencia = "SELECT IDCliente,nombre,apepaterno,apematerno FROM cliente";
+		$res = $this->obtenerSentencia();
+		echo "<select name='cliente'>";
+		while ($fila = $res->fetch_assoc()){
+			echo "<option value='".$fila["IDcliente"]."'> ".$fila["nombre"]." ".$fila["apematerno"]." </option>";
+		}
+		echo "</select>";
+	}}
 ?>

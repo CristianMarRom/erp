@@ -38,7 +38,7 @@
             $fenacimiento = $_POST["fenacimiento"];
 
 			$obj->alta($nombre,$direccion,$telefono,$correo,$apematerno,$apepaterno,$sexo,$fenacimiento);
-			echo "<h2>Asistencia agregada</h2>";
+			echo "<h2>Cliente agregado</h2>";
 		}
 
 		$resultado = $obj->consulta();

@@ -11,7 +11,10 @@
     </div>
 	<form action="" method="post">
 		Fecha: <input type="date" name="Fecha"> <br>
-		ID Empleado: <input type="text" name="IDempleado"> <br>
+		Empleado:
+		<?php
+		$obj->obtenerEmpleados();
+		?> <br>
 		Hora: <input type="time" name="Hora"> <br>
 		<input type="submit" value="Agregar Asistencia" name="alta">
 		<br>

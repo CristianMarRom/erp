@@ -12,7 +12,10 @@
 	<form action="" method="post">
 		ID Venta: <input type="text" name="IDVenta"> <br>
 		Fecha: <input type="date" name="fecha"> <br>
-		ID Cliente: <input type="text" name="IDCliente"> <br>
+		Cliente:
+		<?php
+		$obj->obtenerClientes();
+		?> <br>
 		Total: <input type="text" name="Total"> <br>
 		Tipo de pago:
 		<select name="tipo_pago">

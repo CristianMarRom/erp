@@ -17,7 +17,10 @@
 			<option value="1">Efectivo</option>
 			<option value="2">Tarjeta</option>
 		</select> <br>
-		ID Cliente: <input type="text" name="id_cliente"> <br>
+		Cliente:
+		<?php
+		$obj->obtenerClientes();
+		?> <br>
 		<input type="submit" value="Agregar Compra" name="alta">
 		<br>
 		<?php
